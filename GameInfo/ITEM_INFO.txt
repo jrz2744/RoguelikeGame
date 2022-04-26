@@ -1,0 +1,13 @@
+ITEMS:
+
+Keys
+- unlock next level
+- unlock special items
+
+Buffs
+- change RNG range
+- change stat numbers (health, defense)
+
+Weapons
+- change RNG range for fight mechanic
+- change sprites
