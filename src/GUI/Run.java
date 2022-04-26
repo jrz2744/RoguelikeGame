@@ -23,7 +23,7 @@ public class Run extends Application {
         p.setProperty("1", "defenseBuff");
         p.store(new FileWriter("effects.properties"), "Effect Properties");
 
-        Application.launch(args[0]);
+        Application.launch(args);
     }
 
     public void createLevel(){
@@ -32,6 +32,7 @@ public class Run extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        System.out.println((this.getParameters().getRaw()));
         this.stage = stage;
         createLevel();
         this.stage.show();
