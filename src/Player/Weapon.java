@@ -1,6 +1,7 @@
 package Player;
 
-public class Weapon {
+import Common.Item;
 
+public class Weapon implements Item {
 
 }
