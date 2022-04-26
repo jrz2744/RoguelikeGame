@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -24,16 +25,18 @@ public class Run extends Application {
         p.setProperty("1", "defenseBuff");
         p.store(new FileWriter("effects.properties"), "Effect Properties");
 
-        Application.launch(args[0]);
+        Application.launch(args);
     }
 
-    public void createLevel(List<String> filename){
-        try (BufferedReader in = new BufferedReader(new FileReader(filename.get(0)))){
+    public void createLevel(String filename){
+        try (BufferedReader in = new BufferedReader(new FileReader(filename))){
             String line;
             StringBuilder sb = new StringBuilder();
             while ((line = in.readLine()) != null){
                 sb.append(line).append(".");
             }
+            String[] args = sb.toString().split("\\.");
+            this.stage = new LevelGUI(args).getStage();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,8 +45,8 @@ public class Run extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        createLevel(getParameters().getRaw().get(0));
         this.stage = stage;
-        createLevel(getParameters().getRaw());
         this.stage.show();
         this.stage.sizeToScene();
     }
