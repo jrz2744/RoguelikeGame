@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.List;
 import java.util.Properties;
 
 public class Run extends Application {
@@ -26,14 +27,23 @@ public class Run extends Application {
         Application.launch(args[0]);
     }
 
-    public void createLevel(){
+    public void createLevel(List<String> filename){
+        try (BufferedReader in = new BufferedReader(new FileReader(filename.get(0)))){
+            String line;
+            StringBuilder sb = new StringBuilder();
+            while ((line = in.readLine()) != null){
+                sb.append(line).append(".");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
-        createLevel();
+        createLevel(getParameters().getRaw());
         this.stage.show();
         this.stage.sizeToScene();
     }
