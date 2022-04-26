@@ -13,8 +13,15 @@ public class Run extends Application {
     public static void main(String[] args) throws IOException {
 
         Properties p = new Properties();
+
+        // set weapon properties
         p.setProperty("1", "0-50");
-        p.store(new FileWriter("myFile.properties"), "Weapon Properties");
+        p.store(new FileWriter("weapons.properties"), "Weapon Properties");
+
+
+        // set effect properties
+        p.setProperty("1", "defenseBuff");
+        p.store(new FileWriter("effects.properties"), "Effect Properties");
 
         Application.launch(args[0]);
     }
@@ -27,7 +34,7 @@ public class Run extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         createLevel();
-w        this.stage.show();
+        this.stage.show();
         this.stage.sizeToScene();
     }
 }
