@@ -1,4 +1,4 @@
 package Common;
 
-public class CommonModel {
+public interface CommonModel {
 }
