@@ -2,7 +2,7 @@ package Common;
 
 public interface Item {
 
-    int[] getCoordinate();
+    Coordinates getCoordinate();
     Effect getEffect();
 
 }

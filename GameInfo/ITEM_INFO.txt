@@ -11,3 +11,5 @@ Buffs
 Weapons
 - change RNG range for fight mechanic
 - change sprites
+- has ID
+-- given ID, grabs the weapon the Collection of weapons
