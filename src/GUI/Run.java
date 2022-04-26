@@ -1,5 +1,7 @@
 package GUI;
 
+import Common.Model;
+import Common.Observer;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,9 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-public class Run extends Application {
+public class Run extends Application implements Observer<Model, String > {
 
     private Stage stage;
+
+    @Override
+    public void update(Model model, String s) {
+
+    }
 
     public static void main(String[] args) throws IOException {
 
