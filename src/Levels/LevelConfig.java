@@ -12,5 +12,8 @@ public class LevelConfig {
     public LevelConfig(int xSize, int ySize, int enemyCount){
         this.size = new LevelSize(xSize, ySize);
 
+        for (int i=0; i<enemyCount; i++){
+            this.enemies.add(new Enemy());
+        }
     }
 }
