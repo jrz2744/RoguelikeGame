@@ -12,12 +12,19 @@ import java.util.Properties;
 import static java.lang.System.getenv;
 import static java.lang.System.out;
 
-public class Weapon implements Item {
+public class Weapon extends Effect implements Item {
 
     private int id;
     private String name;
     private int[] dmgRange;
+    private Coordinates position;
+    private Effect effect;
 
+
+    /**
+     * Constructor for the Weapon given id
+     * @param id id for weapon in properties file
+     */
     public Weapon(int id){
         // the id of the desired weapon
         this.id = id;
@@ -41,10 +48,17 @@ public class Weapon implements Item {
         }
     }
 
+    /**
+     *
+     */
     public void createMap(){
-
+        // TODO
     }
 
+    /**
+     * getter for damage range
+     * @return int array of 2 values, lower damage value and upper damage value
+     */
     public int[] getDmgRange() {
         return this.dmgRange;
     }
@@ -56,11 +70,11 @@ public class Weapon implements Item {
 
     @Override
     public Coordinates getCoordinate() {
-        return null;
+        return this.position;
     }
 
     @Override
     public Effect getEffect() {
-        return null;
+        return this.effect;
     }
 }
