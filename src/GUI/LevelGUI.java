@@ -24,7 +24,7 @@ public class LevelGUI {
         GridPane grid = new GridPane();
         for (int x = 0; x < levelSize.getXSize(); x++){
             for (int y = 0; y < levelSize.getYSize(); y++){
-                grid.add(new ImageView(EMPTY), x, y);
+                grid.add(new ImageView(EMPTY), y, x);
             }
         }
         grid.add(new ImageView(START), args[1][1], args[1][0]);

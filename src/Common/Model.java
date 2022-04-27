@@ -44,4 +44,25 @@ public class Model {
     public PlayerConfig getCurrentPlayer() {
         return currentPlayer;
     }
+
+
+    public void moveRight() {
+        int moveResult = this.currentPlayer.getLocation().row() + 1;
+        this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+    }
+
+    public void moveLeft() {
+        int moveResult = this.currentPlayer.getLocation().row() - 1;
+        this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+    }
+
+    public void moveUp() {
+        int moveResult = this.currentPlayer.getLocation().col() + 1;
+        this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+    }
+
+    public void moveDown() {
+        int moveResult = this.currentPlayer.getLocation().col() - 1;
+        this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+    }
 }

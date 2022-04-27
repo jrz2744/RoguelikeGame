@@ -24,14 +24,20 @@ public class Run extends Application implements Observer<Model, String > {
     /** The one model one run of the game*/
     private Model model;
 
+    /** has the game started? */
+    private Boolean initialized = false;
+
     @Override
     public void init() {
         this.model = new Model();
-
+        this.model.addObserver(this);
+        this.initialized = true;
     }
 
     @Override
     public void update(Model model, String s) {
+        if (!this.initialized) return;
+
         if (model.getGameState() == Model.GameState.FIGHTING) {
             updateFight();
         } else {
@@ -72,6 +78,7 @@ public class Run extends Application implements Observer<Model, String > {
                 }
                 lineCount++;
             }
+
             this.stage = new LevelGUI(args).getStage();
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,6 +88,8 @@ public class Run extends Application implements Observer<Model, String > {
 
 
     public void updateLevel() {
+
+
 
 
     }
@@ -94,7 +103,7 @@ public class Run extends Application implements Observer<Model, String > {
         this.stage = stage;
         createFirstLevel(getParameters().getRaw().get(0));
         this.stage.sizeToScene();
-        this.stage.setTitle("Frank's Balls");
+        this.stage.setTitle("RogueLike game");
         this.stage.show();
     }
 }
