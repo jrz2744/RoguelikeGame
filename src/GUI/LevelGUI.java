@@ -1,5 +1,7 @@
 package GUI;
 
+import Common.Model;
+import Levels.LevelConfig;
 import Levels.LevelSize;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -12,8 +14,10 @@ import java.util.Objects;
 
 public class LevelGUI {
 
-    private Stage stage = new Stage();
+    private Scene scene;
     private LevelSize levelSize;
+    private GridPane grid;
+    private LevelConfig level;
 
     private final Image START = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Grey.png")), 128, 128, false, false);
     private final Image PLAYER = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Player.png")), 128, 128, false, false);
@@ -22,7 +26,7 @@ public class LevelGUI {
 
     public LevelGUI(int[][] args){
         this.levelSize = new LevelSize(args[0][0], args[0][1]);
-        GridPane grid = new GridPane();
+        this.grid = new GridPane();
         for (int x = 0; x < levelSize.getXSize(); x++) {
             for (int y = 0; y < levelSize.getYSize(); y++) {
                 grid.add(new ImageView(EMPTY), y, x);
@@ -35,23 +39,24 @@ public class LevelGUI {
         grid.setGridLinesVisible(true);
         ///
 
-        Scene scene = new Scene(grid);
+        this.level = new LevelConfig(this.levelSize.getXSize(), this.levelSize.getYSize(), 2);
 
-
-        scene.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case W -> System.out.println("W key was pressed");
-                case A -> System.out.println("A key was pressed");
-                case S -> System.out.println("S key was pressed");
-                case D -> System.out.println("D key was pressed");
-            }
-        });
-
-
-        this.stage.setScene(scene);
+        this.scene = new Scene(grid);
     }
 
-    public Stage getStage(){
-        return this.stage;
+    public void updateLevelGUI(Model model) {
+        grid.add(new ImageView(EMPTY), model.getCurrentPlayer().getPrevLocation().col(),
+                model.getCurrentPlayer().getPrevLocation().row());
+        grid.add(new ImageView(PLAYER), model.getCurrentPlayer().getLocation().col(),
+                model.getCurrentPlayer().getLocation().row());
+    }
+
+    public Scene getScene(){
+        return this.scene;
+    }
+
+    public LevelConfig getLevel() {
+        return level;
     }
 }
+

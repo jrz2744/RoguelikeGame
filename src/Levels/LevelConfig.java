@@ -16,4 +16,8 @@ public class LevelConfig {
             this.enemies.add(new Enemy("NewEnemy", 100, new Coordinates(0, 0), null));
         }
     }
+
+    public LevelSize getSize() {
+        return size;
+    }
 }

@@ -1,6 +1,8 @@
 package Common;
 
 import AI.Enemy;
+import GUI.LevelGUI;
+import Levels.LevelConfig;
 import Player.PlayerConfig;
 
 import java.util.LinkedList;
@@ -8,6 +10,7 @@ import java.util.List;
 
 public class Model {
     PlayerConfig currentPlayer;
+    LevelConfig currentLevel;
     private final List< Observer< Model, String > > observers =
             new LinkedList<>();
     private GameState gameState;
@@ -45,26 +48,39 @@ public class Model {
         return currentPlayer;
     }
 
+    public void setCurrentLevel(LevelConfig currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 
     public void moveRight() {
-        int moveResult = this.currentPlayer.getLocation().row() + 1;
-        this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+        if (this.currentLevel.getSize().getXSize() - 1 != this.currentPlayer.getLocation().col()) {
+            int moveResult = this.currentPlayer.getLocation().col() + 1;
+            this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+            notifyObservers("Right");
+        }
     }
 
     public void moveLeft() {
-        int moveResult = this.currentPlayer.getLocation().row() - 1;
-        this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+        if (this.currentPlayer.getLocation().col() > 0) {
+            int moveResult = this.currentPlayer.getLocation().col() - 1;
+            this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+            notifyObservers("Left");
+        }
     }
 
     public void moveUp() {
-        int moveResult = this.currentPlayer.getLocation().col() + 1;
-        this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+        if (this.currentPlayer.getLocation().row() > 0) {
+            int moveResult = this.currentPlayer.getLocation().row() - 1;
+            this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+            notifyObservers("Up");
+        }
     }
 
     public void moveDown() {
-
-        
-        int moveResult = this.currentPlayer.getLocation().col() - 1;
-        this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
+        if (this.currentLevel.getSize().getYSize() - 1 != this.currentPlayer.getLocation().row()) {
+            int moveResult = this.currentPlayer.getLocation().row() + 1;
+            this.currentPlayer.setLocation(new Coordinates(moveResult, this.currentPlayer.getLocation().col()));
+            notifyObservers("Down");
+        }
     }
 }

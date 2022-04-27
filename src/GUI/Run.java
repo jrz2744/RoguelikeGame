@@ -2,9 +2,11 @@ package GUI;
 
 import Common.Model;
 import Common.Observer;
+import Levels.LevelConfig;
 import Player.Inventory;
 import Player.PlayerConfig;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -28,6 +30,18 @@ public class Run extends Application implements Observer<Model, String > {
 
     /** has the game started? */
     private Boolean initialized = false;
+
+    /** move */
+    private Move action;
+
+    /** */
+    private LevelGUI currentLevelGUI;
+
+    private LevelConfig currentLevel;
+
+    private Scene scene;
+
+    public enum Move { UP, DOWN, LEFT, RIGHT }
 
     @Override
     public void init() {
@@ -81,7 +95,9 @@ public class Run extends Application implements Observer<Model, String > {
                 lineCount++;
             }
 
-            this.stage = new LevelGUI(args).getStage();
+
+            this.currentLevelGUI = new LevelGUI(args);
+            this.currentLevel = this.currentLevelGUI.getLevel();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,8 +106,8 @@ public class Run extends Application implements Observer<Model, String > {
 
 
     public void updateLevel() {
-
-
+        this.currentLevelGUI.updateLevelGUI(this.model);
+        System.out.println("updated");
     }
 
     public void updateFight() {
@@ -100,14 +116,30 @@ public class Run extends Application implements Observer<Model, String > {
 
     public void readKeys() {
 
+        this.scene.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case W -> this.model.moveUp();
+                case A -> this.model.moveLeft();
+                case S -> this.model.moveDown();
+                case D -> this.model.moveRight();
+            }
+        });
+
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+        this.model.newCurrentPlayer();
         createFirstLevel(getParameters().getRaw().get(0));
+        this.scene = this.currentLevelGUI.getScene();
+        readKeys();
+        this.model.setCurrentLevel(this.currentLevel);
+        this.stage.setScene(this.scene);
         this.stage.sizeToScene();
         this.stage.setTitle("RogueLike game");
         this.stage.show();
     }
+
+
 }
