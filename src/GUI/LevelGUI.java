@@ -14,6 +14,9 @@ public class LevelGUI {
     private Stage stage = new Stage();
     private LevelSize levelSize;
 
+    private final Image START = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Grey.png")), 128, 128, false, false);
+    private final Image PLAYER = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Player.png")), 128, 128, false, false);
+    private final Image EXIT = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Red.png")), 128, 128, false, false);
     private final Image EMPTY = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Green.png")), 128, 128, false, false);
 
     public LevelGUI(int[][] args){
@@ -24,6 +27,12 @@ public class LevelGUI {
                 grid.add(new ImageView(EMPTY), x, y);
             }
         }
+        grid.add(new ImageView(START), args[1][1], args[1][0]);
+        grid.add(new ImageView(PLAYER), args[1][1], args[1][0]);
+        grid.add(new ImageView(EXIT), args[2][1], args[2][0]);
+        ///
+        grid.setGridLinesVisible(true);
+        ///
         this.stage.setScene(new Scene(grid));
     }
 

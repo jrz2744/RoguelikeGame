@@ -73,7 +73,7 @@ public class Run extends Application implements Observer<Model, String > {
                 lineCount++;
             }
 
-            //System.out.println(Arrays.deepToString(args));
+            System.out.println(Arrays.deepToString(args));
 
             this.stage = new LevelGUI(args).getStage();
         } catch (IOException e) {
