@@ -1,0 +1,18 @@
+    public void createLevel(String filename){
+        try (BufferedReader in = new BufferedReader(new FileReader(filename))){
+            String tempLine;
+            String[] line;
+            ArrayList<ArrayList<Integer>> args = new ArrayList<>();
+            while ((tempLine = in.readLine()) != null){
+                line = tempLine.split(" ");
+                ArrayList<Integer> tempArray = new ArrayList<>();
+                for (String s : line){
+
+                }
+            }
+            this.stage = new LevelGUI(args).getStage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
