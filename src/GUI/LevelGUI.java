@@ -9,7 +9,7 @@ public class LevelGUI {
     private Stage stage;
     private LevelSize levelSize;
 
-    public LevelGUI(String[] args){
+    public LevelGUI(int[][] args){
         ///String[] tempLevelSize
         ///this.levelSize = new LevelSize();
         GridPane grid = new GridPane();

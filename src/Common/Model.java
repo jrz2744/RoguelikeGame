@@ -10,6 +10,9 @@ public class Model {
     PlayerConfig currentPlayer;
     private final List< Observer< Model, String > > observers =
             new LinkedList<>();
+    private GameState gameState;
+
+    public enum GameState { ONGOING, FIGHTING }
     //Enemy[] enemies;
 
 
@@ -34,9 +37,9 @@ public class Model {
         this.currentPlayer = new PlayerConfig();
     }
 
-
-
-
+    public GameState getGameState() {
+        return gameState;
+    }
 
     public PlayerConfig getCurrentPlayer() {
         return currentPlayer;
