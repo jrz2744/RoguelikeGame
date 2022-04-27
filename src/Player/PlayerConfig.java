@@ -5,11 +5,10 @@ import Common.Actions;
 public class PlayerConfig implements Actions {
 
     private Inventory inventory;
-    private int health;
+    private int health = 100;
 
-    public PlayerConfig(Inventory inv, int initHealth) {
-        this.health = initHealth;
-        this.inventory = inv;
+    public PlayerConfig() {
+
     }
 
     @Override
