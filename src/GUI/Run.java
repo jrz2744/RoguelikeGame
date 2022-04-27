@@ -56,7 +56,7 @@ public class Run extends Application implements Observer<Model, String > {
         Application.launch(args);
     }
 
-    public void createFirstLevel(String filename){
+    public void createFirstLevel (String filename){
         try (BufferedReader in = new BufferedReader(new FileReader(filename))){
             String tempLine;
             String[] line;
@@ -75,7 +75,7 @@ public class Run extends Application implements Observer<Model, String > {
 
             //System.out.println(Arrays.deepToString(args));
 
-            //this.stage = new LevelGUI(args).getStage();
+            this.stage = new LevelGUI(args).getStage();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,13 +92,12 @@ public class Run extends Application implements Observer<Model, String > {
 
     }
 
-
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         createFirstLevel(getParameters().getRaw().get(0));
-
-        this.stage.show();
         this.stage.sizeToScene();
+        this.stage.setTitle("Frank's Balls");
+        this.stage.show();
     }
 }
