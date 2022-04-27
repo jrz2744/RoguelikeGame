@@ -4,6 +4,7 @@ import Levels.LevelSize;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -22,8 +23,8 @@ public class LevelGUI {
     public LevelGUI(int[][] args){
         this.levelSize = new LevelSize(args[0][0], args[0][1]);
         GridPane grid = new GridPane();
-        for (int x = 0; x < levelSize.getXSize(); x++){
-            for (int y = 0; y < levelSize.getYSize(); y++){
+        for (int x = 0; x < levelSize.getXSize(); x++) {
+            for (int y = 0; y < levelSize.getYSize(); y++) {
                 grid.add(new ImageView(EMPTY), y, x);
             }
         }
@@ -33,7 +34,21 @@ public class LevelGUI {
         ///
         grid.setGridLinesVisible(true);
         ///
-        this.stage.setScene(new Scene(grid));
+
+        Scene scene = new Scene(grid);
+
+
+        scene.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case W -> System.out.println("W key was pressed");
+                case A -> System.out.println("A key was pressed");
+                case S -> System.out.println("S key was pressed");
+                case D -> System.out.println("D key was pressed");
+            }
+        });
+
+
+        this.stage.setScene(scene);
     }
 
     public Stage getStage(){

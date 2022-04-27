@@ -5,6 +5,8 @@ import Common.Observer;
 import Player.Inventory;
 import Player.PlayerConfig;
 import javafx.application.Application;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -90,11 +92,13 @@ public class Run extends Application implements Observer<Model, String > {
     public void updateLevel() {
 
 
-
-
     }
 
     public void updateFight() {
+
+    }
+
+    public void readKeys() {
 
     }
 

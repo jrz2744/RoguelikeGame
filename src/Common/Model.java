@@ -62,6 +62,8 @@ public class Model {
     }
 
     public void moveDown() {
+
+        
         int moveResult = this.currentPlayer.getLocation().col() - 1;
         this.currentPlayer.setLocation(new Coordinates(this.currentPlayer.getLocation().row(), moveResult));
     }
