@@ -20,7 +20,7 @@ public class LevelGUI {
     private LevelConfig level;
 
     private final Image START = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Grey.png")), 128, 128, false, false);
-    private final Image PLAYER = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Player.png")), 128, 128, false, false);
+    private final Image PLAYER = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/32BIT/Swim.png")), 128, 128, false, false);
     private final Image EXIT = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Red.png")), 128, 128, false, false);
     private final Image EMPTY = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Images/Green.png")), 128, 128, false, false);
 
